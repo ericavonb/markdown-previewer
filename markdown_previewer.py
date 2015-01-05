@@ -6,6 +6,7 @@ import os
 import SimpleHTTPServer
 import SocketServer
 import sys
+import subprocess
 import thread
 import time
 import urllib2
@@ -233,7 +234,7 @@ if __name__ == '__main__':
     server.set_file(file_path)
     server.start()
     print("Serving {file_path} on port: {port}".format(file_path=file_path, port=PORT))
-
+    subprocess.check_call(["open","http://localhost:{port}".format(port=PORT)])
     # Watch file for changes, and update the html if there is one
     last_modified = os.stat(file_path).st_ctime
     while True:
